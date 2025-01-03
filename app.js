@@ -27,13 +27,13 @@ boxes.forEach((box) => {
             box.innerText="O";
             box.style.color="green";
             turnO=false;
-            contain.style.backgroundColor="green";
+            contain.style.backgroundColor="red";
 
         }else{
             box.innerText="X";
             box.style.color="red";
             turnO=true;
-            contain.style.backgroundColor="red";
+            contain.style.backgroundColor="green";
 
         }
        box.disabled=true;
@@ -52,13 +52,16 @@ const enableBoxes=()=>{
         box.innerText="";
     }
 }
-
-
 const showWinner=(winner)=>{
     msg.innerText=`Congratulation, Winner is ${winner}`;
+    if(winner=='X'){
+        contain.style.backgroundColor="red";
+    }
+    else{
+        contain.style.backgroundColor="green";
+    }
     msgContainer.classList.remove("hide");
     disabledBoxes();
-
 }
 const checkWinner = () => {
     let allFilled = true; 
@@ -74,7 +77,6 @@ const checkWinner = () => {
             }
         }
     }
-
     for (let box of boxes) {
         if (box.innerText === "") {
             allFilled = false;
@@ -84,6 +86,7 @@ const checkWinner = () => {
 
     if (allFilled) {
         msg.innerText = "It's a Tie!";
+        contain.style.backgroundColor="grey";
         msgContainer.classList.remove("hide");
         disabledBoxes();
     }
